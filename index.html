@@ -63,17 +63,31 @@
 
 </div>
 
-<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@4"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 <script src="./data/icons.js"></script>
 <script src="./data/text.js"></script>
+<script src="./data/queryString.js"></script>
 <script>
 	let currentlang = 'en';
 	//Init tooltips
 	tippy('.link',{
 		placement: 'bottom'
 	})
-
+	var query = window.location.search.substring(1);
+	async function searchParameter(query){
+		var qs = await parse_query_string(query);
+		if(qs['lang'] == "es"){
+		currentlang = "es";
+		lang.innerHTML = '<img src="./img/flags/es.png" />';
+		work.innerHTML = `${workicon} ${datatext.es.work}`;
+		description.innerText = datatext.es.description;
+		document.querySelector('title').textContent = 'Lucas - Tarjeta de presentación';
+		document.querySelector('meta[property="og:site_name"]').setAttribute("content", 'Lucas - Tarjeta de presentación');
+		document.querySelector('meta[property="og:description"]').setAttribute("content", 'Hola, soy Lucas. Un desarrollador de Argentina. Actualmente trabajo de manera freelance. Visita mi sitio web para saber más de mí.');
+	}
+	}
+	searchParameter(query)
 	const lang = document.querySelector('.js-change-theme');
 	const body = document.querySelector('body');
 	const profile = document.getElementById('profile');
