@@ -68,6 +68,7 @@
 <script src="./data/icons.js"></script>
 <script src="./data/text.js"></script>
 <script src="./data/queryString.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 	let currentlang = 'en';
 	//Init tooltips
@@ -114,9 +115,9 @@
 	
 </script>
 <script>
-	import { get } from './js/axios.min.js';
-	export default function getUser() {
-		const { data: userData } = await get('https://api.github.com/users/MixDevCode/repos');
+	const axios = require('axios').default;
+	async function getUser() {
+		const { data: userData } = await axios.get('https://api.github.com/users/MixDevCode/repos');
 		return userData;
 	}
 	console.log(getUser());
