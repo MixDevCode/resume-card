@@ -115,10 +115,10 @@
 	
 </script>
 <script type="module">
-	import axios from "./js/axios.min.js";
+	import { get } from "./js/axios.min.js";
 	async function getUser() {
 		try{
-			const { data: userData } = await axios.get('https://api.github.com/users/MixDevCode/repos');
+			const { data: userData } = await get('https://api.github.com/users/MixDevCode/repos');
 			console.log(userData);
 		} catch(error){
 			console.log(error);
