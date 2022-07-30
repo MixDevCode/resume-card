@@ -114,8 +114,12 @@
 	
 </script>
 <script>
-	const githubData = require('./js/getGithubData.js');
-	console.log(profile);
+	import { get } from './js/axios.min.js';
+	export default function getUser() {
+		const { data: userData } = await get('https://api.github.com/users/MixDevCode/repos');
+		return userData;
+	}
+	console.log(getUser());
 </script>
 	
 </body>
