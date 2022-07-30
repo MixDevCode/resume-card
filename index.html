@@ -114,13 +114,17 @@
 	});
 	
 </script>
-<script>
-	const axios = require('axios').default;
+<script type="module">
+	import axios from "./js/axios.min.js";
 	async function getUser() {
-		const { data: userData } = await axios.get('https://api.github.com/users/MixDevCode/repos');
-		return userData;
+		try{
+			const { data: userData } = await axios.get('https://api.github.com/users/MixDevCode/repos');
+			console.log(userData);
+		} catch(error){
+			console.log(error);
+		}
 	}
-	console.log(getUser());
+	getUser();
 </script>
 	
 </body>
